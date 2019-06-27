@@ -51,3 +51,21 @@ suspend fun coroutine3(timeMillis: Long) {
 }
 
 fun log(msg: String) = println("[${Date()}] $msg")
+
+/* Output
+[Thu Jun 27 15:34:51 ICT 2019] Start
+[Thu Jun 27 15:34:51 ICT 2019] coroutine1 - Start
+[Thu Jun 27 15:34:51 ICT 2019] coroutine1 - End
+[Thu Jun 27 15:34:51 ICT 2019] ---------------------
+[Thu Jun 27 15:34:51 ICT 2019] coroutine2 - Start
+[Thu Jun 27 15:34:51 ICT 2019] coroutine2 - End of runBlocking
+[Thu Jun 27 15:34:53 ICT 2019] coroutine1 - After delay 2000 ms
+[Thu Jun 27 15:34:53 ICT 2019] coroutine2 - After delay 2000 ms
+[Thu Jun 27 15:34:53 ICT 2019] coroutine2 - End
+[Thu Jun 27 15:34:53 ICT 2019] ---------------------
+[Thu Jun 27 15:34:53 ICT 2019] coroutine3 - Start
+[Thu Jun 27 15:34:53 ICT 2019] coroutine3 - End of coroutineScope
+[Thu Jun 27 15:34:55 ICT 2019] coroutine3 - After delay 2000 ms
+[Thu Jun 27 15:34:55 ICT 2019] coroutine3 - End
+[Thu Jun 27 15:34:55 ICT 2019] End
+*/
