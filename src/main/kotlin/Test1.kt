@@ -50,8 +50,6 @@ suspend fun coroutine3(timeMillis: Long) {
     log("coroutine3 - End")
 }
 
-fun log(msg: String) = println("[${Date()}] $msg")
-
 /* Output
 [Thu Jun 27 15:34:51 ICT 2019] Start
 [Thu Jun 27 15:34:51 ICT 2019] coroutine1 - Start
