@@ -3,14 +3,14 @@ import kotlinx.coroutines.*
 fun main() {
     log("Start - Sequence")
 
-    var sum = 0L
+    val taskComplete = mutableListOf<Int>()
 
     runBlocking {
         log("Begin of runBlocking 1")
 
         launch {
-            sum += task(1, 3000)
-            log("Sum 1 = $sum")
+            taskComplete.add(task(1, 3000))
+            log("taskComplete 1 = $taskComplete")
         }
 
         log("End of runBlocking 1")
@@ -22,8 +22,8 @@ fun main() {
         log("Begin of runBlocking 2")
 
         launch {
-            sum += task(2, 2000)
-            log("Sum 2 = $sum")
+            taskComplete.add(task(2, 2000))
+            log("taskComplete 2 = $taskComplete")
         }
 
         log("End of runBlocking 2")
@@ -35,8 +35,8 @@ fun main() {
         log("Begin of runBlocking 3")
 
         launch {
-            sum += task(3, 5000)
-            log("Sum 3 = $sum")
+            taskComplete.add(task(3, 5000))
+            log("taskComplete 3 = $taskComplete")
         }
 
         log("End of runBlocking 3")
@@ -48,43 +48,43 @@ fun main() {
         log("Begin of runBlocking 4")
 
         launch {
-            sum += task(4, 1000)
-            log("Sum 4 = $sum")
+            taskComplete.add(task(4, 1000))
+            log("taskComplete 4 = $taskComplete")
         }
 
         log("End of runBlocking 4")
     }
 
-    log("Sum = $sum")
+    log("taskComplete = $taskComplete")
 
     log("End")
 }
 
 /* Output
-[Fri Jun 28 10:12:35 ICT 2019] Start - Sequence
-[Fri Jun 28 10:12:35 ICT 2019] Begin of runBlocking 1
-[Fri Jun 28 10:12:35 ICT 2019] End of runBlocking 1
-[Fri Jun 28 10:12:35 ICT 2019] Task1 - Start
-[Fri Jun 28 10:12:38 ICT 2019] Task1 - After delay 3000 ms
-[Fri Jun 28 10:12:38 ICT 2019] Sum 1 = 3000
-[Fri Jun 28 10:12:38 ICT 2019] ---------------------
-[Fri Jun 28 10:12:38 ICT 2019] Begin of runBlocking 2
-[Fri Jun 28 10:12:38 ICT 2019] End of runBlocking 2
-[Fri Jun 28 10:12:38 ICT 2019] Task2 - Start
-[Fri Jun 28 10:12:40 ICT 2019] Task2 - After delay 2000 ms
-[Fri Jun 28 10:12:40 ICT 2019] Sum 2 = 5000
-[Fri Jun 28 10:12:40 ICT 2019] ---------------------
-[Fri Jun 28 10:12:40 ICT 2019] Begin of runBlocking 3
-[Fri Jun 28 10:12:40 ICT 2019] End of runBlocking 3
-[Fri Jun 28 10:12:40 ICT 2019] Task3 - Start
-[Fri Jun 28 10:12:45 ICT 2019] Task3 - After delay 5000 ms
-[Fri Jun 28 10:12:45 ICT 2019] Sum 3 = 10000
-[Fri Jun 28 10:12:45 ICT 2019] ---------------------
-[Fri Jun 28 10:12:45 ICT 2019] Begin of runBlocking 4
-[Fri Jun 28 10:12:45 ICT 2019] End of runBlocking 4
-[Fri Jun 28 10:12:45 ICT 2019] Task4 - Start
-[Fri Jun 28 10:12:46 ICT 2019] Task4 - After delay 1000 ms
-[Fri Jun 28 10:12:46 ICT 2019] Sum 4 = 11000
-[Fri Jun 28 10:12:46 ICT 2019] Sum = 11000
-[Fri Jun 28 10:12:46 ICT 2019] End
+[Fri Jun 28 10:26:51 ICT 2019] Start - Sequence
+[Fri Jun 28 10:26:51 ICT 2019] Begin of runBlocking 1
+[Fri Jun 28 10:26:51 ICT 2019] End of runBlocking 1
+[Fri Jun 28 10:26:51 ICT 2019] Task1 - Start
+[Fri Jun 28 10:26:54 ICT 2019] Task1 - After delay 3000 ms
+[Fri Jun 28 10:26:54 ICT 2019] taskComplete 1 = [1]
+[Fri Jun 28 10:26:54 ICT 2019] ---------------------
+[Fri Jun 28 10:26:54 ICT 2019] Begin of runBlocking 2
+[Fri Jun 28 10:26:54 ICT 2019] End of runBlocking 2
+[Fri Jun 28 10:26:54 ICT 2019] Task2 - Start
+[Fri Jun 28 10:26:56 ICT 2019] Task2 - After delay 2000 ms
+[Fri Jun 28 10:26:56 ICT 2019] taskComplete 2 = [1, 2]
+[Fri Jun 28 10:26:56 ICT 2019] ---------------------
+[Fri Jun 28 10:26:56 ICT 2019] Begin of runBlocking 3
+[Fri Jun 28 10:26:56 ICT 2019] End of runBlocking 3
+[Fri Jun 28 10:26:56 ICT 2019] Task3 - Start
+[Fri Jun 28 10:27:01 ICT 2019] Task3 - After delay 5000 ms
+[Fri Jun 28 10:27:01 ICT 2019] taskComplete 3 = [1, 2, 3]
+[Fri Jun 28 10:27:01 ICT 2019] ---------------------
+[Fri Jun 28 10:27:01 ICT 2019] Begin of runBlocking 4
+[Fri Jun 28 10:27:01 ICT 2019] End of runBlocking 4
+[Fri Jun 28 10:27:01 ICT 2019] Task4 - Start
+[Fri Jun 28 10:27:02 ICT 2019] Task4 - After delay 1000 ms
+[Fri Jun 28 10:27:02 ICT 2019] taskComplete 4 = [1, 2, 3, 4]
+[Fri Jun 28 10:27:02 ICT 2019] taskComplete = [1, 2, 3, 4]
+[Fri Jun 28 10:27:02 ICT 2019] End
 */
